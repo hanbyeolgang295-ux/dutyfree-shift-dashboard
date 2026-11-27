@@ -18,7 +18,7 @@ DATA = Path(__file__).parent / "data"
 DF_C, VIS_C, NEW_C = "#E8590C", "#9CA3AF", "#1C7ED6"
 INK, MUTED, GRID, PALE = "#1F2933", "#6B7280", "#E5E7EB", "#A5D8FF"
 FONT = "Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
-PCFG = {"displayModeBar": False}
+PCFG = {"displayModeBar": False, "scrollZoom": False, "doubleClick": "reset", "showAxisDragHandles": False}
 
 st.markdown(f"""
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
@@ -63,7 +63,9 @@ def style(fig, h=470, legend=True):
     fig.update_layout(height=h, margin=dict(l=4, r=18, t=36, b=4), plot_bgcolor="white", paper_bgcolor="white",
                       font=dict(family=FONT, size=15, color=INK), hoverlabel=dict(font_family=FONT, font_size=15),
                       showlegend=legend, legend=dict(orientation="h", y=1.1, x=0, font=dict(size=15)),
-                      transition=dict(duration=500), uirevision="keep")
+                      transition=dict(duration=500), uirevision="keep", dragmode=False)
+    fig.update_xaxes(fixedrange=True)
+    fig.update_yaxes(fixedrange=True)
     fig.update_xaxes(showgrid=False, linecolor=GRID, tickfont=dict(size=14, color=INK))
     fig.update_yaxes(gridcolor=GRID, zeroline=False, tickfont=dict(size=13, color=MUTED))
     return fig
